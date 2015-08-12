@@ -1,0 +1,79 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="IsCool:war exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/IsCool_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="IsCool" />
+          <element id="library" level="project" name="IsCool" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="antlr-2.7.6.jar" module-name="IsCool" />
+          <element id="library" level="module" name="asm-attrs.jar" module-name="IsCool" />
+          <element id="library" level="module" name="asm.jar" module-name="IsCool" />
+          <element id="library" level="module" name="aspectj-1.6.12.jar" module-name="IsCool" />
+          <element id="library" level="module" name="aspectjweaver-1.6.2.jar" module-name="IsCool" />
+          <element id="library" level="module" name="cglib-2.1.3.jar" module-name="IsCool" />
+          <element id="library" level="module" name="cglib-2.2.jar" module-name="IsCool" />
+          <element id="library" level="module" name="com.springsource.org.aopalliance-1.0.0.jar" module-name="IsCool" />
+          <element id="library" level="module" name="commons-lang.jar" module-name="IsCool" />
+          <element id="library" level="module" name="commons-logging-1.1.jar" module-name="IsCool" />
+          <element id="library" level="module" name="dom4j-1.6.1.jar" module-name="IsCool" />
+          <element id="library" level="module" name="ehcache-1.2.3.jar" module-name="IsCool" />
+          <element id="library" level="module" name="ejb3-persistence.jar" module-name="IsCool" />
+          <element id="library" level="module" name="freemarker-2.3.16.jar" module-name="IsCool" />
+          <element id="library" level="module" name="freemarker.jar" module-name="IsCool" />
+          <element id="library" level="module" name="hibernate-annotations.jar" module-name="IsCool" />
+          <element id="library" level="module" name="hibernate-commons-annotations.jar" module-name="IsCool" />
+          <element id="library" level="module" name="hibernate-entitymanager.jar" module-name="IsCool" />
+          <element id="library" level="module" name="hibernate-memcached-1.2.2.jar" module-name="IsCool" />
+          <element id="library" level="module" name="hibernate-tools.jar" module-name="IsCool" />
+          <element id="library" level="module" name="hibernate3.jar" module-name="IsCool" />
+          <element id="library" level="module" name="javassist.jar" module-name="IsCool" />
+          <element id="library" level="module" name="jdbc2_0-stdext.jar" module-name="IsCool" />
+          <element id="library" level="module" name="jstl.jar" module-name="IsCool" />
+          <element id="library" level="module" name="jta.jar" module-name="IsCool" />
+          <element id="library" level="module" name="jtidy-r8-20060801.jar" module-name="IsCool" />
+          <element id="library" level="module" name="log4j-1.2.15.jar" module-name="IsCool" />
+          <element id="library" level="module" name="memcached-2.3.1.jar" module-name="IsCool" />
+          <element id="library" level="module" name="slf4j-api-1.5.0.jar" module-name="IsCool" />
+          <element id="library" level="module" name="slf4j-log4j12-1.5.0.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-aop-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-asm-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-aspects-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-beans-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-context-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-context-support-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-core-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-expression-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-instrument-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-instrument-tomcat-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-jdbc-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-jms-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-orm-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-oxm-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-security-config-3.0.5.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-security-core-3.0.5.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-security-web-3.0.5.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-struts-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-test-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-tx-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-web-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-webmvc-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spring-webmvc-portlet-3.0.2.RELEASE.jar" module-name="IsCool" />
+          <element id="library" level="module" name="spymemcached-2.7.3.jar" module-name="IsCool" />
+          <element id="library" level="module" name="standard.jar" module-name="IsCool" />
+          <element id="library" level="project" name="lib" />
+        </element>
+        <element id="artifact" artifact-name="IsCool" />
+      </element>
+      <element id="library" level="module" name="DynamicJasper-4.0.1.jar" module-name="IsCool" />
+      <element id="library" level="module" name="jasperreports-3.7.6.jar" module-name="IsCool" />
+      <element id="library" level="module" name="DynamicJasper-4.0.1-javadoc.jar" module-name="IsCool" />
+      <element id="library" level="module" name="commons-collections-2.1.1.jar" module-name="IsCool" />
+      <element id="library" level="module" name="DynamicJasper-4.0.1-sources.jar" module-name="IsCool" />
+      <element id="library" level="module" name="mysql-connector-java-5.1.13-bin.jar" module-name="IsCool" />
+      <element id="javaee-facet-resources" facet="IsCool/web/Web" />
+    </root>
+  </artifact>
+</component>

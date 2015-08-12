@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="erp" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="128m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/SCCS/**"/>
+    <exclude name="**/RCS/**"/>
+    <exclude name="**/rcs/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/.pyc/**"/>
+    <exclude name="**/.pyo/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/*.lib/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/.bundle/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.ear"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.swc"/>
+    <include name="*.ane"/>
+    <include name="*.egg"/>
+    <include name="*.jar"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.6" value="${jdk.home.1.6}/bin"/>
+  <path id="jdk.classpath.1.6">
+    <fileset dir="${jdk.home.1.6}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.6}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.6}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.6"/>
+  
+  
+  <!-- BrtcProject Libraries -->
+  
+  <path id="library.lib.classpath">
+    <fileset dir="${basedir}/WebContent/WEB-INF/lib">
+      <patternset refid="library.patterns"/>
+    </fileset>
+  </path>
+  
+  
+  <!-- Designation Server Libraries -->
+  
+  <path id="library.glassfish_3.1.2.2.classpath">
+    <pathelement location="F:/glassfish3/glassfish/modules/javax.ejb.jar"/>
+    <pathelement location="F:/glassfish3/glassfish/modules/javax.servlet-api.jar"/>
+    <pathelement location="F:/glassfish3/glassfish/modules/javax.servlet.jsp-api.jar"/>
+  </path>
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm4-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_erp.xml"/>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.cool, clean.artifact.cool:war_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.cool" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.cool" value="${basedir}/classes/artifacts/ERP"/>
+    <property name="artifact.output.cool:war_exploded" value="${basedir}/classes/artifacts/ERP_war_exploded"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.ERP.war" value="${artifacts.temp.dir}/ERP.war"/>
+  </target>
+  
+  <target name="clean.artifact.cool:war_exploded" description="clean ERP:war exploded artifact output">
+    <delete dir="${artifact.output.cool:war_exploded}"/>
+  </target>
+  
+  <target name="artifact.cool" depends="init.artifacts, compile.module.cool" description="Build &#39;ERP&#39; artifact">
+    <property name="artifact.temp.output.cool" value="${artifacts.temp.dir}/ERP"/>
+    <mkdir dir="${artifact.temp.output.cool}"/>
+    <zip destfile="${temp.jar.path.ERP.war}">
+      <zipfileset dir="${erp.output.dir}"/>
+      <zipfileset dir="${basedir}/WebContent"/>
+      <zipfileset file="${basedir}/WebContent/WEB-INF/web.xml"/>
+    </zip>
+    <copy file="${temp.jar.path.ERP.war}" tofile="${artifact.temp.output.cool}/ERP.war"/>
+  </target>
+  
+  <target name="artifact.cool:war_exploded" depends="init.artifacts, compile.module.cool" description="Build &#39;ERP:war exploded&#39; artifact">
+    <mkdir dir="${artifact.output.cool:war_exploded}"/>
+    <copy todir="${artifact.output.cool:war_exploded}">
+      <fileset dir="${basedir}/WebContent"/>
+    </copy>
+    <mkdir dir="${artifact.output.cool:war_exploded}/WEB-INF"/>
+    <copy file="${basedir}/WebContent/WEB-INF/web.xml" tofile="${artifact.output.cool:war_exploded}/WEB-INF/web.xml"/>
+    <mkdir dir="${artifact.output.cool:war_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.cool:war_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.cool:war_exploded}/WEB-INF/classes">
+      <fileset dir="${erp.output.dir}"/>
+    </copy>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.cool, artifact.cool:war_exploded" description="Build all artifacts">
+    <mkdir dir="${artifact.output.cool}"/>
+    <copy todir="${artifact.output.cool}">
+      <fileset dir="${artifact.temp.output.cool}"/>
+    </copy>
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

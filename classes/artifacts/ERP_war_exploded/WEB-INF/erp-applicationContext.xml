@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+
+    <bean id="propertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/jdbc.properties" />
+    <bean id="tradePlusDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+          p:driverClassName="${jdbc.driverClassName}"
+          p:url="${jdbc.url}"
+          p:username="${jdbc.username}"
+          p:password="${jdbc.password}"/>
+
+    <!-- ADD PERSISTENCE SUPPORT HERE (jpa, test, etc) -->
+    <bean id="jpaTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory" />
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref local="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="tradePlusDataSource"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${jdbc.hibernate.dialect}</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!-- stats -->
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="org.hibernate.type">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.jdbc.batch_size">50</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.provider_class">com.googlecode.hibernate.memcached.MemcachedCacheProvider</prop>
+                <prop key="hibernate.memcached.servers">127.0.0.1:11211</prop>
+            </props>
+        </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.iscool.security.model.User</value>
+                <value>com.iscool.security.model.Token</value>
+                <value>com.iscool.security.model.Groups</value>
+                <value>com.iscool.security.model.Authority</value>
+                <value>com.iscool.security.model.Feature</value>
+                <value>com.iscool.security.model.Component</value>
+
+                <value>com.iscool.admin.model.Region</value>
+                <value>com.iscool.admin.model.Country</value>
+                <value>com.iscool.admin.model.City</value>
+                <value>com.iscool.admin.model.School</value>
+                <value>com.iscool.admin.model.Department</value>
+                <value>com.iscool.admin.model.Teacher</value>
+                <value>com.iscool.admin.model.Guardian</value>
+                <value>com.iscool.admin.model.Student</value>
+                <value>com.iscool.admin.model.Staff</value>
+
+
+               <!--   <value>com.iscool.admin.model.Staff</value>-->
+
+
+
+            </list>
+        </property>
+    </bean>
+
+
+
+    <!-- <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean> -->
+    <!-- ADD PERSISTENCE SUPPORT HERE (jpa, test, etc) -->
+
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+    <!-- Freemarker configuration -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath">
+            <value>/</value>
+        </property>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="template_exception_handler">rethrow</prop>
+                <prop key="number_format">0.########</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="suffix" value=".ftl" />
+        <!-- if you want to use the Spring FreeMarker macros, set this property to true -->
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="exposeRequestAttributes">
+            <value>true</value>
+        </property>
+        <property name="exposeSessionAttributes">
+            <value>true</value>
+        </property>
+        <property name="requestContextAttribute" value="rc"/>
+    </bean>
+    <!-- Freemarker configuration -->
+
+
+<!--
+
+    <bean id="httpServletResponse" class="com.iscoolol.util.HttpServletResponseFactoryBean" scope="request"/>
+    <bean id="responseInScopeFilter" class="com.iscoolol.util.ResponseInScopeFilter"/>
+
+-->
+
+</beans>
+
